@@ -1,0 +1,43 @@
+Aplikacja powsta³a w celu rozwiazania problemu duzych roznic tempreatury w pokoju.
+By³o to spowodowane zbyt mala powierzchni¹ wymiany ciep³a grzejnika.
+
+Wykorzystane elementy.
+-uC Atmega8
+-wyswietlacz HD44780
+-2x czujnik temperatury 1Wire Dallas 18b20
+-Tranzystor mocy mosfet IRF640
+-Tranzstor sterujacy 547B
+-Zasilacz 12V DC
+
+Zasada dzialania
+Program odczytuje wskazania czujników w dwóch przeciwleg³ych krañcach pokoju.
+Wynik jest sprowadzany do postaci ulamkowej, jednak przy wykorzystaniu jedynie liczb calkowitych.
+Wyniki s¹ przepuszczane przez filtr dolno przepustowy(srednia krocz¹ca). Tak aby nie powodowac zalaczani9a sie wiatraka przez zaklocenia.
+Nastepnie nastepuje dobieranie nastawy sprzetowego kanalu PWM
+Wyswietlenie danych z czujnikow i procentowej nastawy wiatraka. Wyswietlane sa tylko czesci calkowite.
+Uklad mozna wlaczac i wylaczac przyiskami ktore powoduja zewnetrzne przerwania.
+
+Uzylem tutaj gotowej bilbioteki do obslugi wywswietlacza autorstwa Rados³awa Kwietnia do ktorej dodalem funkcje odczytu tekstu z pamieci flash.
+Oraz biblioteki do obslugi czujnikow 1Wire autorstwa Peter Danneggera
+Mozliwosc rozbudowy: Dodanie zegara czasu rzezcywistego i wylaczanei ukladu w godzinach nocnych. 
+Gdyby uklad mial za zadanie pracowac na zasilaniu bateryjnym mozna dodac tryb uspienia i wybudzania przyciskami on/of
+
+Pin magistrali 1Wire PD0
+Reszta pinow wg noty technicznej uC.
+Glowna czesc projektu znajduje sie w katalogu Pwm
+********************************************************************************************************************************************
+App was created to solve solve the problem of high temperature differences i my room.
+It was caused by to small heat exchange surface.
+
+used components
+-uC Atmega8
+-Display HD44780
+-2x temperature sensors 1Wire Dallas 18b20
+-Power transistor mosfet IRF640
+-low power Transistor 547B
+-DC Power supply 12V
+Program read temperature from sensors in the corners of the room.The reading is processed to fractional form, but usning only integers.
+Program also has implemented low-pass-filter to be resistant to interference.
+Next, program show temperatur and power of fan in % 
+controling of temperature can be turned on and turned off by using external interrupts.
+I Used Radoslaw Kwiecen's library for HD44780 i which I added function to read text from flash memory, and 1Wire Peter Dannegger's library.
